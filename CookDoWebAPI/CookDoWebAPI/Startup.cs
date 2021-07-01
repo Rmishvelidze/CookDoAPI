@@ -1,7 +1,9 @@
+using CookDoWebAPI.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +29,8 @@ namespace CookDoWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddMvc();
+            services.AddDbContext<CRUDContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbUniversity")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CookDoWebAPI", Version = "v1" });
