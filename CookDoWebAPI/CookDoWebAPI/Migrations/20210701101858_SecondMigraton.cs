@@ -2,29 +2,29 @@
 
 namespace CookDoWebAPI.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class SecondMigraton : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Students",
+                name: "Ingredients",
                 columns: table => new
                 {
-                    StudentId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Roll = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IndexForUniqueCode = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.StudentId);
+                    table.PrimaryKey("PK_Ingredients", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Ingredients");
         }
     }
 }
